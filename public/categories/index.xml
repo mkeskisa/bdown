@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Stuff by me</title>
-    <link>mkeskisa.netlify.com/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on Stuff by me</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>markuskeskisantti@gmail.com (Markus Keski-Säntti)</managingEditor>
     <webMaster>markuskeskisantti@gmail.com (Markus Keski-Säntti)</webMaster>
     
-	<atom:link href="mkeskisa.netlify.com/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Finnish</title>
-      <link>mkeskisa.netlify.com/categories/finnish/</link>
+      <link>/categories/finnish/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
       <author>markuskeskisantti@gmail.com (Markus Keski-Säntti)</author>
-      <guid>mkeskisa.netlify.com/categories/finnish/</guid>
+      <guid>/categories/finnish/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>mkeskisa.netlify.com/categories/r/</link>
+      <link>/categories/r/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
       <author>markuskeskisantti@gmail.com (Markus Keski-Säntti)</author>
-      <guid>mkeskisa.netlify.com/categories/r/</guid>
+      <guid>/categories/r/</guid>
       <description></description>
     </item>
     

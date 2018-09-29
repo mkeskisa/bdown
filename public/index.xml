@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Stuff by me</title>
-    <link>mkeskisa.netlify.com/</link>
+    <link>/</link>
     <description>Recent content on Stuff by me</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>markuskeskisantti@gmail.com (Markus Keski-Säntti)</managingEditor>
     <webMaster>markuskeskisantti@gmail.com (Markus Keski-Säntti)</webMaster>
     <lastBuildDate>Sat, 29 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="mkeskisa.netlify.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Muutama kuva!</title>
-      <link>mkeskisa.netlify.com/post/tyottomyys/</link>
+      <link>/post/tyottomyys/</link>
       <pubDate>Sat, 29 Sep 2018 00:00:00 +0000</pubDate>
       <author>markuskeskisantti@gmail.com (Markus Keski-Säntti)</author>
-      <guid>mkeskisa.netlify.com/post/tyottomyys/</guid>
+      <guid>/post/tyottomyys/</guid>
       <description>2007 alkanut finanssikriisi johti Suomessa pitkään taantumaan, jota usein myös saatetaan kutsua lamaksi. Itse kartan “lama” termin käyttöä tässä asiayhteydessä, koska muihin lamoihin verrattuna viimeisin taantuma on etenkkin työttömyyden näkökulmasta huomattavasti lievempi kuin esim. 90-luvun lama, jolloin työttömyys nousi 3,5 %:sta 18,9 %:iin Suomessa. Viimeisimmän taantuman aikana BKT mateli nollassa useita vuosia (mutta ei mitenkään hurjasti pakkasella) ja työttömyys on pysynyt korkealla tasolla (~8-10 %), mutta mitään valtavaa hyppäystä työttömyydessä ei ole tapahtunut.</description>
     </item>
     
     <item>
       <title>Mielenkiintoinen tilanne Liigassa (ex. SM-liiga)</title>
-      <link>mkeskisa.netlify.com/post/sarjataulukko/</link>
+      <link>/post/sarjataulukko/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
       <author>markuskeskisantti@gmail.com (Markus Keski-Säntti)</author>
-      <guid>mkeskisa.netlify.com/post/sarjataulukko/</guid>
+      <guid>/post/sarjataulukko/</guid>
       <description>Jääkiekossa, kuten useissa muissakin urheilulajeissa, joukkueiden välinen kilpailu on jaksotettu kausittain. Jokaisen joukkueen urheilullinen motivaattori (ainakin toivottavasti) on voittaa kausi. Joskus kuitenkin realiteetit iskevät päin naamaa ja todetaan, ettei menossa olevaa kautta ole mahdollisuutta voittaa, edes teoriassa. Tämä huomataan viimeistään siinä vaiheessa, kun teoreettinen mahdollisuus päästä pudotuspeleihin ja täten finaaliin on menetetty. Herääminen tapahtuu kuitenkin usein huomattavasti aikaisemmin, kun pudotuspeleihin ole enää realistista mahdollisuutta.</description>
     </item>
     
     <item>
       <title>About me</title>
-      <link>mkeskisa.netlify.com/page/about/</link>
+      <link>/page/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>markuskeskisantti@gmail.com (Markus Keski-Säntti)</author>
-      <guid>mkeskisa.netlify.com/page/about/</guid>
+      <guid>/page/about/</guid>
       <description>Greetings traveler!
 My name is Markus Keski-Säntti and I’m 25-year-old guy from northern Finland. I’m interested in finance, data-analysis, games and simulations. I completed BSc and MSc in economics with finance as my major in Oulu Business School. I am not a native English speaker so articles can, and probably will, have a high brain fart count.</description>
     </item>

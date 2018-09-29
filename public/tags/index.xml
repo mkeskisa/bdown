@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Stuff by me</title>
-    <link>mkeskisa.netlify.com/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Stuff by me</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>markuskeskisantti@gmail.com (Markus Keski-Säntti)</managingEditor>
     <webMaster>markuskeskisantti@gmail.com (Markus Keski-Säntti)</webMaster>
     <lastBuildDate>Wed, 31 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="mkeskisa.netlify.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>R</title>
-      <link>mkeskisa.netlify.com/tags/r/</link>
+      <link>/tags/r/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
       <author>markuskeskisantti@gmail.com (Markus Keski-Säntti)</author>
-      <guid>mkeskisa.netlify.com/tags/r/</guid>
+      <guid>/tags/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Urheilu</title>
-      <link>mkeskisa.netlify.com/tags/urheilu/</link>
+      <link>/tags/urheilu/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
       <author>markuskeskisantti@gmail.com (Markus Keski-Säntti)</author>
-      <guid>mkeskisa.netlify.com/tags/urheilu/</guid>
+      <guid>/tags/urheilu/</guid>
       <description></description>
     </item>
     

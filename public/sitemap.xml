@@ -3,67 +3,67 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>mkeskisa.netlify.com/post/tyottomyys/</loc>
+    <loc>/post/tyottomyys/</loc>
     <lastmod>2018-09-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>mkeskisa.netlify.com/post/sarjataulukko/</loc>
+    <loc>/post/sarjataulukko/</loc>
     <lastmod>2018-01-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>mkeskisa.netlify.com/page/about/</loc>
+    <loc>/page/about/</loc>
   </url>
   
   <url>
-    <loc>mkeskisa.netlify.com/categories/</loc>
+    <loc>/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>mkeskisa.netlify.com/categories/finnish/</loc>
-    <lastmod>2018-01-31T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>mkeskisa.netlify.com/page/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>mkeskisa.netlify.com/post/</loc>
-    <lastmod>2018-09-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>mkeskisa.netlify.com/tags/r/</loc>
+    <loc>/categories/finnish/</loc>
     <lastmod>2018-01-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>mkeskisa.netlify.com/categories/r/</loc>
-    <lastmod>2018-01-31T00:00:00+00:00</lastmod>
+    <loc>/page/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>mkeskisa.netlify.com/</loc>
+    <loc>/post/</loc>
     <lastmod>2018-09-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>mkeskisa.netlify.com/tags/</loc>
+    <loc>/tags/r/</loc>
     <lastmod>2018-01-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>mkeskisa.netlify.com/tags/urheilu/</loc>
+    <loc>/categories/r/</loc>
+    <lastmod>2018-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2018-09-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2018-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/urheilu/</loc>
     <lastmod>2018-01-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
