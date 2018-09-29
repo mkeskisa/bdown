@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Muutama kuva!</title>
+  <meta property="og:title" content="Muutama kuva!" />
+  <meta name="twitter:title" content="Muutama kuva!" />
+  <meta name="description" content="2007 alkanut finanssikriisi johti Suomessa pitkään taantumaan, jota usein myös saatetaan kutsua lamaksi. Itse kartan “lama” termin käyttöä tässä asiayhteydessä, koska muihin lamoihin verrattuna viimeisin taantuma on etenkkin työttömyyden näkökulmasta huomattavasti lievempi kuin esim. 90-luvun lama, jolloin työttömyys nousi 3,5 %:sta 18,9 %:iin Suomessa. Viimeisimmän taantuman aikana BKT mateli nollassa useita vuosia (mutta ei mitenkään hurjasti pakkasella) ja työttömyys on pysynyt korkealla tasolla (~8-10 %), mutta mitään valtavaa hyppäystä työttömyydessä ei ole tapahtunut.">
+  <meta property="og:description" content="2007 alkanut finanssikriisi johti Suomessa pitkään taantumaan, jota usein myös saatetaan kutsua lamaksi. Itse kartan “lama” termin käyttöä tässä asiayhteydessä, koska muihin lamoihin verrattuna viimeisin taantuma on etenkkin työttömyyden näkökulmasta huomattavasti lievempi kuin esim. 90-luvun lama, jolloin työttömyys nousi 3,5 %:sta 18,9 %:iin Suomessa. Viimeisimmän taantuman aikana BKT mateli nollassa useita vuosia (mutta ei mitenkään hurjasti pakkasella) ja työttömyys on pysynyt korkealla tasolla (~8-10 %), mutta mitään valtavaa hyppäystä työttömyydessä ei ole tapahtunut.">
+  <meta name="twitter:description" content="2007 alkanut finanssikriisi johti Suomessa pitkään taantumaan, jota usein myös saatetaan kutsua lamaksi. Itse kartan “lama” termin käyttöä tässä asiayhteydessä, koska muihin lamoihin verrattuna …">
+  <meta name="author" content="Markus Keski-Säntti"/>
+  <link href='/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="/img/pusheen2.png" />
+  <meta name="twitter:image" content="/img/pusheen2.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="/post/tyottomyys/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stuff by me" />
+
+  <meta name="generator" content="Hugo 0.49" />
+  <link rel="canonical" href="/post/tyottomyys/" />
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Stuff by me">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="/css/highlight.min.css" /><link rel="stylesheet" href="/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Stuff by me</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Archive" href="/archive/archive.html">Archive</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Stuff by me" href="/">
+            <img class="avatar-img" src="/img/pusheen2.png" alt="Stuff by me" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Muutama kuva!</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on September 29, 2018
+  
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>2007 alkanut finanssikriisi johti Suomessa pitkään taantumaan, jota usein myös saatetaan kutsua <em>lamaksi</em>. Itse kartan “lama” termin käyttöä tässä asiayhteydessä, koska muihin lamoihin verrattuna viimeisin <strong>taantuma</strong> on etenkkin työttömyyden näkökulmasta huomattavasti lievempi kuin esim. 90-luvun lama, jolloin työttömyys nousi 3,5 %:sta 18,9 %:iin Suomessa. Viimeisimmän taantuman aikana BKT mateli nollassa useita vuosia (mutta ei mitenkään hurjasti pakkasella) ja työttömyys on pysynyt korkealla tasolla (~8-10 %), mutta mitään valtavaa hyppäystä työttömyydessä ei ole tapahtunut. Työttöymys oli korkealla tasolla jo ennen taantumaa, koska Suomen työttömyys ei ollut ehtinyt laskea 90-luvun lamaa edeltävälle tasolle.</p>
+<style type="text/css">
+body, td {
+   font-size: 18px;
+}
+code.r{
+  font-size: 10px;
+}
+pre {
+  font-size: 10px
+}
+</style>
+<pre class="r"><code>library(tidyverse)
+library(lubridate)
+library(pxweb)
+library(gdalUtils)
+library(sf)
+library(janitor)
+library(gganimate)
+library(rvest)
+get_df &lt;- 
+    get_pxweb_data(url = &quot;http://pxnet2.stat.fi/PXWeb/api/v1/fi/Explorer/Indikaattorit/alueindikaattorit.px&quot;,
+                   dims = list(Alue = c(&#39;*&#39;),
+                               Tiedot = c(&#39;Työttömiä_o&#39;, &#39;Nuortyöt_o&#39;),
+                               Vuosi = c(&#39;*&#39;)),
+                   clean = TRUE) %&gt;% as.tibble()
+
+ogr2ogr(&quot;WFS:http://geo.stat.fi/geoserver/tilastointialueet/wfs&quot;, &quot;kunnat.shp&quot;, &quot;kunta1000k_2013&quot;)
+kunnat &lt;- read_sf(&quot;kunnat.shp&quot;)</code></pre>
+<pre class="r"><code>prepped_data &lt;- get_df %&gt;% 
+    filter(Vuosi %in% 1985:2012, !str_detect(Alue, &#39;SK|ELY|MK|Koko&#39;)) %&gt;%
+    spread(Tiedot, -Alue) %&gt;% 
+    janitor::clean_names() %&gt;% 
+    rename(n_tyo = nuorisotyottomyysaste_percent, k_tyo = tyottomyysaste_percent) 
+
+kuntatiedot &lt;- 
+    &#39;https://www.tilastokeskus.fi/meta/luokitukset/kunta/001-2012/index.html&#39; %&gt;% #Tämän voisi kopioida suoraa triblenä, mutta scrapetaan uudelleenajettavuuden vuoksi
+    rvest::html() %&gt;% 
+    rvest::html_nodes(xpath = &#39;//*[@id=&quot;content&quot;]/table&#39;) %&gt;% 
+    rvest::html_table(fill = T) %&gt;% 
+    as.data.frame() %&gt;% 
+    as.tibble() %&gt;% 
+    select(1:2) %&gt;% 
+    tail(-1) %&gt;% 
+    rename(kuntanumero = 1, alue = 2)
+
+kuntanumerot &lt;- prepped_data %&gt;% 
+    mutate(alue = alue %&gt;% str_replace(&quot;(?s) .*&quot;, &quot;&quot;),
+           vuosi = vuosi %&gt;% as.character() %&gt;% as.integer()) %&gt;% 
+    left_join(kuntatiedot)</code></pre>
+<pre class="r"><code>kuntanumerot %&gt;% 
+    filter(is.na(kuntanumero)) %&gt;% 
+    count(alue)
+
+#Note to self: &quot;Koski TI&quot;, &quot;Maarianhamina - Marienhamn&quot; ja &quot;Pedersören kunta&quot; ovat ainoat kunnat, joiden nimessä on välilyönti
+#Maarianhamina on ainoa kunta, jonka nimi ilmoitetaan suomenkielisessä versiossa suomeksi ja ruotsiksi
+
+fixed_kunnat &lt;- kuntanumerot %&gt;% 
+    mutate(kuntanumero = case_when(!is.na(kuntanumero) ~ kuntanumero %&gt;% as.integer(), 
+                                   alue == &#39;Koski&#39; ~ 284L,
+                                   alue == &#39;Maarianhamina&#39; ~ 478L,
+                                   alue == &#39;Pedersören&#39; ~ 599L),
+           nuorisokerroin = n_tyo / (n_tyo + k_tyo)) 
+kunta_limit &lt;- fixed_kunnat %&gt;% 
+    mutate(n_tyo = ifelse(n_tyo &gt; 50, 50, n_tyo))</code></pre>
+<pre class="r"><code>#Muodostetaan gif työttömyydestä vuosittain 1990-2012
+gg_tyottomyys &lt;- kunnat %&gt;% 
+    select(-vuosi) %&gt;% 
+    mutate(kuntanumero = kunta %&gt;% as.integer()) %&gt;% left_join(kunta_limit) %&gt;% 
+    ggplot() + 
+    theme_void() +
+    geom_sf(aes(fill = k_tyo)) + 
+    scale_fill_gradient2(low = &quot;white&quot;, high = &quot;#5b0000&quot;) +
+    labs(title = &#39;Työttömyys (%) vuonna: {frame_time}&#39;, fill = &#39;&#39;) +
+    transition_time(vuosi)
+
+gg_tyottomyys</code></pre>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva2.gif" />
+
+</div>
+<pre class="r"><code>gg_tyottomyys + geom_sf(aes(fill = n_tyo)) + labs(title = &#39;Nuorisotyöttömyys (%) vuonna: {frame_time}&#39;, fill = &#39;&#39;)</code></pre>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva1.gif" />
+
+</div>
+<pre class="r"><code>kunnat_maakunnat &lt;- &#39;https://www.stat.fi/meta/luokitukset/kunta/001-2013/luokitusavain_maakunta.html&#39; %&gt;% 
+    rvest::html() %&gt;% 
+    rvest::html_nodes(xpath = &#39;//*[@id=&quot;content&quot;]/table&#39;) %&gt;% 
+    rvest::html_table(fill = T) %&gt;% 
+    as.data.frame() %&gt;% 
+    as.tibble() %&gt;% 
+    tail(-1) %&gt;% 
+    rename(kuntanumero = 1, kunta = 2, maakuntanumero = 3, maakunta = 4)
+
+
+rajat &lt;- c(0, 50)
+
+
+kunta_limit %&gt;% 
+    mutate(kuntanumero = kuntanumero %&gt;% as.character()) %&gt;% 
+    left_join(kunnat_maakunnat)%&gt;% #https://www.stat.fi/meta/luokitukset/kunta/001-2013/luokitusavain_maakunta.html
+    ggplot() +
+    geom_line(data = 1:50 %&gt;% as.tibble(), aes(x = value, y = value), color = &#39;grey70&#39;) +
+    theme_minimal() +
+    geom_point(aes(n_tyo, k_tyo)) +
+    scale_y_continuous(limits = rajat) +
+    scale_x_continuous(limits = rajat) +
+    facet_wrap(~maakunta, nrow = 5)  +
+    labs(title = &#39;Nuorisotyöttömyys ja työttömyys vuonna: {frame_time}&#39;, fill = &#39;&#39;, y = &#39;Työttömyysaste (%)&#39;, x = &#39;Nuorisotyöttömyysaste (%)&#39;) +
+    shadow_wake(0.1, alpha = 0.25) +
+    transition_time(vuosi)</code></pre>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva3.gif" />
+
+</div>
+<pre class="r"><code>tyottomyys_87 &lt;- get_df %&gt;% 
+  filter(Vuosi %in% 1987:2012, str_detect(Alue, &#39;Koko&#39;)) %&gt;% 
+  spread(Tiedot, values) %&gt;% 
+  janitor::clean_names() %&gt;% 
+  mutate(vuosi = vuosi %&gt;% as.character() %&gt;% as.integer())
+
+fixed_kunnat %&gt;% 
+  mutate(kuntanumero = kuntanumero %&gt;% as.character()) %&gt;% 
+  left_join(kunnat_maakunnat) %&gt;% 
+  left_join(asukasluku) %&gt;% #https://www.kuntaliitto.fi/sites/default/files/media/file/Kuntajaot%20ja%20asukasluvut%202000-2017_5.xls
+  ggplot(aes(n_tyo, k_tyo)) +
+  theme_minimal() +
+  geom_hline(data = tyottomyys_87, aes(yintercept = tyottomyysaste_percent), color = &#39;grey70&#39;, lty = &#39;dashed&#39;) + 
+  geom_vline(data = tyottomyys_87, aes(xintercept = nuorisotyottomyysaste_percent), color = &#39;grey70&#39;, lty = &#39;dashed&#39;) +
+  scale_y_continuous(limits = c(0, 70), breaks = seq(0, 100, 10), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(0, 70), breaks = seq(0, 100, 10), expand = c(0, 0)) +
+  geom_segment(data = tyottomyys_87, aes(x = 0, y = tyottomyysaste_percent, xend = nuorisotyottomyysaste_percent, yend = 0), size = 1, color = &#39;grey70&#39;) +
+  geom_smooth() + 
+  geom_point(aes(size = asukasluku), alpha = 0.2) + 
+  scale_color_manual(values = thl_green) +
+  transition_time(vuosi) +
+  labs(title = &#39;Nuorisotyöttömyys ja työttömyys Suomessa vuonna: {frame_time}&#39;, y = &#39;Työttömyysaste (%)&#39;, x = &#39;Nuorisotyöttömyysaste (%)&#39;, size = &#39;Asukasluku&#39;)</code></pre>
+<div class="figure">
+<img src="https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva4.gif" />
+
+</div>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <ul class="list-inline footer-links">
+                
+
+
+<li>
+    <a href="//twitter.com/share?url=%2fpost%2ftyottomyys%2f&amp;text=Muutama%20kuva%21&amp;via="
+       target="_blank" alt="" title="Share on Twitter">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//plus.google.com/share?url=%2fpost%2ftyottomyys%2f" target="_blank" title="Share on Google Plus">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.facebook.com/sharer/sharer.php?u=%2fpost%2ftyottomyys%2f" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//reddit.com/submit?url=%2fpost%2ftyottomyys%2f&amp;title=Muutama%20kuva%21" target="_blank" title="Share on Reddit">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-reddit fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.linkedin.com/shareArticle?url=%2fpost%2ftyottomyys%2f&amp;title=Muutama%20kuva%21" target="_blank"
+       title="Share on LinkedIn">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.stumbleupon.com/submit?url=%2fpost%2ftyottomyys%2f&amp;title=Muutama%20kuva%21" target="_blank"
+       title="Share on StumbleUpon">
+        <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-stumbleupon fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+
+<li>
+    <a href="//www.pinterest.com/pin/create/button/?url=%2fpost%2ftyottomyys%2f&amp;description=Muutama%20kuva%21" target="_blank"
+       title="Share on Pinterest">
+         <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+              </span>
+    </a>
+</li>
+
+              </ul>
+            </section>
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="/post/sarjataulukko/" data-toggle="tooltip" data-placement="top" title="Mielenkiintoinen tilanne Liigassa (ex. SM-liiga)">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:markuskeskisantti@gmail.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/mkeskisa" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/users/10271061/mkeskisa" title="StackOverflow">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Markus Keski-Säntti
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="/">Stuff by me</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.49</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

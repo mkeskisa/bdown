@@ -1,0 +1,41 @@
+---
+title: "Mielenkiintoinen tilanne Liigassa (ex. SM-liiga)"
+author: "Markus Keski-Säntti"
+date: 2018-01-31
+categories: ["R", "Finnish"]
+tags: ["Urheilu", "R"]
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(pacman)
+pacman::p_load(tidyverse, plotly)
+```
+
+Jääkiekossa, kuten useissa muissakin urheilulajeissa, joukkueiden välinen kilpailu on jaksotettu kausittain. Jokaisen joukkueen urheilullinen motivaattori (ainakin toivottavasti) on voittaa kausi. Joskus kuitenkin realiteetit iskevät päin naamaa ja todetaan, ettei menossa olevaa kautta ole mahdollisuutta voittaa, edes teoriassa. Tämä huomataan viimeistään siinä vaiheessa, kun teoreettinen mahdollisuus päästä pudotuspeleihin ja täten finaaliin on menetetty. Herääminen tapahtuu kuitenkin usein huomattavasti aikaisemmin, kun pudotuspeleihin ole enää **realistista** mahdollisuutta.
+
+Realistinen mahdollisuus päästä pudotuspeleihin on tietenkin hankala määrittää, mutta ei voi olettaa, että koko kauden rämpinyt joukkue yhtäkkiä voittaisi kaikki jäljellä olevat pelit. Tähän ei usko johtoporras, kannattajat ja luultavasti edes pelaajisto. Tällöin pelaaminen heikkenee entisestään ja johtoporras miettii, miten joukkue laitetaan parhaiten "lihoiksi", eli kuinka tehdä mahdollisimman pienet taloudelliset tappiot.
+
+Tällä hetkellä, 20.1.2018, Suomen Liigassa (siis jääkiekon) on mielenkiintoinen runkosarjatilanne, joka näyttää lähes funktiomaiselta. Ne joukkueet, jotka eivät enää taistele realistisesti pudotuspelipaikasta muodostavat oman klusterin. Molempia klustereita kuvaa tietty luonnollista logaritmia muistuttava kaarevuus, tosin pudonneiden tapauksessa tämä on käänteinen. Joukkueista 1-10 sijoilla olevat ovat selvästi pelissä mukana, kun taas sijoilla 11-15 toivo on menetetty.
+
+Joukkueet 1-10 etenevät pudotuspeleihin. 
+
+
+```{r cars, echo = FALSE, warning = FALSE, message = FALSE}
+set.seed(100)
+pistemäärä <- c(93, 84, 80, 75, 71, 69, 67, 66, 65, 65, 52, 51, 49, 46, 42)
+sijoitus <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)
+x <- data.frame(sijoitus, pistemäärä)
+p <- ggplot(x, aes(x = sijoitus, y = pistemäärä )) + 
+    geom_point(aes(text = c('Kärpät','TPS','Tappara','JYP',"Lukko","HIFK","Pelicans","Saipa","Kalpa","Ässät","Ilves","KooKoo","HPK","Jukurit","Sport"))) +
+    annotate(geom = "text", x = 7.5, y = 100, label = "Sarjatilanne Liigassa 20.1.2018")
+
+(asd<-ggplotly(p, height = 300, width = 400)) %>% layout(autosize = FALSE)
+
+```
+
+Pelaajasiirtoja odotellessa...

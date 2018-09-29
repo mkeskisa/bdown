@@ -1,0 +1,157 @@
+---
+title: "Muutama kuva!"
+output: html_document
+date: 2018-09-29
+---
+
+2007 alkanut finanssikriisi johti Suomessa pitkään taantumaan, jota usein myös saatetaan kutsua *lamaksi*. Itse kartan "lama" termin käyttöä tässä asiayhteydessä, koska muihin lamoihin verrattuna viimeisin **taantuma** on etenkkin työttömyyden näkökulmasta huomattavasti lievempi kuin esim. 90-luvun lama, jolloin työttömyys nousi 3,5 %:sta 18,9 %:iin Suomessa. Viimeisimmän taantuman aikana BKT mateli nollassa useita vuosia (mutta ei mitenkään hurjasti pakkasella) ja työttömyys on pysynyt korkealla tasolla (~8-10 %), mutta mitään valtavaa hyppäystä työttömyydessä ei ole tapahtunut. Työttöymys oli korkealla tasolla jo ennen taantumaa, koska Suomen työttömyys ei ollut ehtinyt laskea 90-luvun lamaa edeltävälle tasolle. 
+
+
+
+<style type="text/css">
+body, td {
+   font-size: 18px;
+}
+code.r{
+  font-size: 10px;
+}
+pre {
+  font-size: 10px
+}
+</style>
+```{r message=FALSE, warning=FALSE, paged.print=FALSE, echo=TRUE, results=FALSE}
+library(tidyverse)
+library(lubridate)
+library(pxweb)
+library(gdalUtils)
+library(sf)
+library(janitor)
+library(gganimate)
+library(rvest)
+get_df <- 
+    get_pxweb_data(url = "http://pxnet2.stat.fi/PXWeb/api/v1/fi/Explorer/Indikaattorit/alueindikaattorit.px",
+                   dims = list(Alue = c('*'),
+                               Tiedot = c('Työttömiä_o', 'Nuortyöt_o'),
+                               Vuosi = c('*')),
+                   clean = TRUE) %>% as.tibble()
+
+ogr2ogr("WFS:http://geo.stat.fi/geoserver/tilastointialueet/wfs", "kunnat.shp", "kunta1000k_2013")
+kunnat <- read_sf("kunnat.shp")
+```
+
+```{r echo=TRUE, results = FALSE, warning = FALSE, message = FALSE}
+prepped_data <- get_df %>% 
+    filter(Vuosi %in% 1985:2012, !str_detect(Alue, 'SK|ELY|MK|Koko')) %>%
+    spread(Tiedot, -Alue) %>% 
+    janitor::clean_names() %>% 
+    rename(n_tyo = nuorisotyottomyysaste_percent, k_tyo = tyottomyysaste_percent) 
+
+kuntatiedot <- 
+    'https://www.tilastokeskus.fi/meta/luokitukset/kunta/001-2012/index.html' %>% #Tämän voisi kopioida suoraa triblenä, mutta scrapetaan uudelleenajettavuuden vuoksi
+    rvest::html() %>% 
+    rvest::html_nodes(xpath = '//*[@id="content"]/table') %>% 
+    rvest::html_table(fill = T) %>% 
+    as.data.frame() %>% 
+    as.tibble() %>% 
+    select(1:2) %>% 
+    tail(-1) %>% 
+    rename(kuntanumero = 1, alue = 2)
+
+kuntanumerot <- prepped_data %>% 
+    mutate(alue = alue %>% str_replace("(?s) .*", ""),
+           vuosi = vuosi %>% as.character() %>% as.integer()) %>% 
+    left_join(kuntatiedot)
+```
+
+```{r echo=TRUE, results=FALSE}
+kuntanumerot %>% 
+    filter(is.na(kuntanumero)) %>% 
+    count(alue)
+
+#Note to self: "Koski TI", "Maarianhamina - Marienhamn" ja "Pedersören kunta" ovat ainoat kunnat, joiden nimessä on välilyönti
+#Maarianhamina on ainoa kunta, jonka nimi ilmoitetaan suomenkielisessä versiossa suomeksi ja ruotsiksi
+
+fixed_kunnat <- kuntanumerot %>% 
+    mutate(kuntanumero = case_when(!is.na(kuntanumero) ~ kuntanumero %>% as.integer(), 
+                                   alue == 'Koski' ~ 284L,
+                                   alue == 'Maarianhamina' ~ 478L,
+                                   alue == 'Pedersören' ~ 599L),
+           nuorisokerroin = n_tyo / (n_tyo + k_tyo)) 
+kunta_limit <- fixed_kunnat %>% 
+    mutate(n_tyo = ifelse(n_tyo > 50, 50, n_tyo))
+```
+
+```{r echo=TRUE, eval = FALSE}
+#Muodostetaan gif työttömyydestä vuosittain 1990-2012
+gg_tyottomyys <- kunnat %>% 
+    select(-vuosi) %>% 
+    mutate(kuntanumero = kunta %>% as.integer()) %>% left_join(kunta_limit) %>% 
+    ggplot() + 
+    theme_void() +
+    geom_sf(aes(fill = k_tyo)) + 
+    scale_fill_gradient2(low = "white", high = "#5b0000") +
+    labs(title = 'Työttömyys (%) vuonna: {frame_time}', fill = '') +
+    transition_time(vuosi)
+
+gg_tyottomyys
+```
+![](https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva2.gif)
+```{r echo=TRUE, eval = FALSE}
+gg_tyottomyys + geom_sf(aes(fill = n_tyo)) + labs(title = 'Nuorisotyöttömyys (%) vuonna: {frame_time}', fill = '')
+```
+![](https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva1.gif)
+```{r echo=TRUE, eval = FALSE}
+kunnat_maakunnat <- 'https://www.stat.fi/meta/luokitukset/kunta/001-2013/luokitusavain_maakunta.html' %>% 
+    rvest::html() %>% 
+    rvest::html_nodes(xpath = '//*[@id="content"]/table') %>% 
+    rvest::html_table(fill = T) %>% 
+    as.data.frame() %>% 
+    as.tibble() %>% 
+    tail(-1) %>% 
+    rename(kuntanumero = 1, kunta = 2, maakuntanumero = 3, maakunta = 4)
+
+
+rajat <- c(0, 50)
+
+
+kunta_limit %>% 
+    mutate(kuntanumero = kuntanumero %>% as.character()) %>% 
+    left_join(kunnat_maakunnat)%>% #https://www.stat.fi/meta/luokitukset/kunta/001-2013/luokitusavain_maakunta.html
+    ggplot() +
+    geom_line(data = 1:50 %>% as.tibble(), aes(x = value, y = value), color = 'grey70') +
+    theme_minimal() +
+    geom_point(aes(n_tyo, k_tyo)) +
+    scale_y_continuous(limits = rajat) +
+    scale_x_continuous(limits = rajat) +
+    facet_wrap(~maakunta, nrow = 5)  +
+    labs(title = 'Nuorisotyöttömyys ja työttömyys vuonna: {frame_time}', fill = '', y = 'Työttömyysaste (%)', x = 'Nuorisotyöttömyysaste (%)') +
+    shadow_wake(0.1, alpha = 0.25) +
+    transition_time(vuosi)
+```
+![](https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva3.gif)
+```{r echo=TRUE, eval = FALSE}
+tyottomyys_87 <- get_df %>% 
+  filter(Vuosi %in% 1987:2012, str_detect(Alue, 'Koko')) %>% 
+  spread(Tiedot, values) %>% 
+  janitor::clean_names() %>% 
+  mutate(vuosi = vuosi %>% as.character() %>% as.integer())
+
+fixed_kunnat %>% 
+  mutate(kuntanumero = kuntanumero %>% as.character()) %>% 
+  left_join(kunnat_maakunnat) %>% 
+  left_join(asukasluku) %>% #https://www.kuntaliitto.fi/sites/default/files/media/file/Kuntajaot%20ja%20asukasluvut%202000-2017_5.xls
+  ggplot(aes(n_tyo, k_tyo)) +
+  theme_minimal() +
+  geom_hline(data = tyottomyys_87, aes(yintercept = tyottomyysaste_percent), color = 'grey70', lty = 'dashed') + 
+  geom_vline(data = tyottomyys_87, aes(xintercept = nuorisotyottomyysaste_percent), color = 'grey70', lty = 'dashed') +
+  scale_y_continuous(limits = c(0, 70), breaks = seq(0, 100, 10), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(0, 70), breaks = seq(0, 100, 10), expand = c(0, 0)) +
+  geom_segment(data = tyottomyys_87, aes(x = 0, y = tyottomyysaste_percent, xend = nuorisotyottomyysaste_percent, yend = 0), size = 1, color = 'grey70') +
+  geom_smooth() + 
+  geom_point(aes(size = asukasluku), alpha = 0.2) + 
+  scale_color_manual(values = thl_green) +
+  transition_time(vuosi) +
+  labs(title = 'Nuorisotyöttömyys ja työttömyys Suomessa vuonna: {frame_time}', y = 'Työttömyysaste (%)', x = 'Nuorisotyöttömyysaste (%)', size = 'Asukasluku')
+
+```
+![](https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva4.gif)

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Markus Keski-Säntti" />
+
+
+<title>Fast sankey diagrams from stat.fi px-data</title>
+
+<script src="sankey_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="sankey_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="sankey_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="sankey_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="sankey_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="sankey_files/navigation-1.1/tabsets.js"></script>
+<link href="sankey_files/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="sankey_files/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Fast sankey diagrams from stat.fi px-data</h1>
+<h4 class="author"><em>Markus Keski-Säntti</em></h4>
+
+</div>
+
+
+<p>I’ve never been a big fan of bureaucracy but one thing that it’s good for is gathering data. A lot of data. This data is often available to anyone willing to use it (to some extent). Yet <strong>I’m often quite critical of the level of data visualization</strong> that stat.fi provides. It’s <strong>either lines or bars</strong>, <em>you choose</em>! That’s not particularly efficient way of transforming information but I guess Statistics Finland rather use the resources to just provide the data. So I thought, why not mess with it a bit on my free time. So I went to <a href="http://pxnet2.stat.fi/PXWeb" class="uri">http://pxnet2.stat.fi/PXWeb</a> and browsed some data and just chose something that could be fun to visualize with.</p>
+<p>This is what I came up with: <a href="http://pxnet2.stat.fi/PXWeb/Resources/PX/Databases/StatFin/asu/asas/010_asas_tau_101.px" class="uri">http://pxnet2.stat.fi/PXWeb/Resources/PX/Databases/StatFin/asu/asas/010_asas_tau_101.px</a></p>
+<p>It’s housing data from Finland. It includes factors such as dwelling type, number of dwellings, household size, region etc. Here it’s as a data frame:</p>
+<pre><code>## &#39;data.frame&#39;:    399360 obs. of  6 variables:
+##  $ Yksikkö          : Factor w/ 1 level &quot;Asuntokuntien lukumäärä&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Vuosi            : Factor w/ 32 levels &quot;2016&quot;,&quot;2015&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+##  $ Talotyyppi       : Factor w/ 5 levels &quot;Kaikki talotyypit&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Asuntokunnan.koko: Factor w/ 8 levels &quot;Kaikki asuntokunnat&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Alue             : Factor w/ 312 levels &quot;KOKO MAA&quot;,&quot;Akaa&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ value            : num  2654657 2634339 2617780 2599613 2579781 ...</code></pre>
+<pre class="r"><code>#### Reading and cleaning data
+pacman::p_load(pxR, googleVis, dplyr)
+df&lt;-&quot;http://pxnet2.stat.fi/PXWeb/Resources/PX/Databases/StatFin/asu/asas/010_asas_tau_101.px&quot; %&gt;% read.px %&gt;% as.data.frame
+df_1&lt;-filter(df, Alue %in% &#39;KOKO MAA&#39; &amp; Vuosi %in% &#39;2016&#39; &amp; Talotyyppi %in% &#39;Kaikki talotyypit&#39; &amp; Asuntokunnan.koko %!in% &#39;Kaikki asuntokunnat&#39;) #Data for the first pipe of sankey, note that %!in% is a custom function that is inverse of %in%
+df_2&lt;-filter(df, Alue %in% &#39;KOKO MAA&#39; &amp; Vuosi %in% &#39;2016&#39; &amp; Talotyyppi %!in% &#39;Kaikki talotyypit&#39; &amp; Asuntokunnan.koko %!in% &#39;Kaikki asuntokunnat&#39;) #Data for the second pipe of sankey
+df_1&lt;-select(df_1, 1,4,6) #Keeping only relevant source, target and value columns (in logical order source-&gt;target:value)
+df_2&lt;-select(df_2, 4,3,6) #Keeping only relevant source, target and value columns
+nimet&lt;-c(&#39;source&#39;,&#39;target&#39;,&#39;value&#39;)
+names(df_1)&lt;-nimet #Renaming columns
+names(df_2)&lt;-nimet #Renaming columns
+dfvalmis&lt;-rbind(df_1, df_2) #Combine both datafrimes for a single sankey
+options(gvis.plot.tag=&#39;chart&#39;) 
+sankey&lt;-gvisSankey(dfvalmis[,c(&#39;source&#39;,&#39;target&#39;,&#39;value&#39;)], options=list(width=&#39;1800px&#39;, height=&#39;800px&#39;)) #Making the sankey
+plot(sankey)</code></pre>
+<!-- Sankey generated in R 3.4.1 by googleVis 0.6.2 package -->
+<!-- Fri Sep 22 05:59:42 2017 -->
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataSankeyID304c16d235cd () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+"Asuntokuntien lukumäärä",
+"1 henkilö",
+1131424
+],
+[
+"Asuntokuntien lukumäärä",
+"2 henkilöä",
+880188
+],
+[
+"Asuntokuntien lukumäärä",
+"3 henkilöä",
+284108
+],
+[
+"Asuntokuntien lukumäärä",
+"4 henkilöä",
+233352
+],
+[
+"Asuntokuntien lukumäärä",
+"5 henkilöä",
+86489
+],
+[
+"Asuntokuntien lukumäärä",
+"6 henkilöä",
+23929
+],
+[
+"Asuntokuntien lukumäärä",
+"7+ henkilöä",
+15167
+],
+[
+"1 henkilö",
+"Erillinen pientalo",
+237865
+],
+[
+"1 henkilö",
+"Rivi- tai ketjutalo",
+160312
+],
+[
+"1 henkilö",
+"Asuinkerrostalo",
+706571
+],
+[
+"1 henkilö",
+"Muu rakennus",
+26676
+],
+[
+"2 henkilöä",
+"Erillinen pientalo",
+413073
+],
+[
+"2 henkilöä",
+"Rivi- tai ketjutalo",
+117540
+],
+[
+"2 henkilöä",
+"Asuinkerrostalo",
+337738
+],
+[
+"2 henkilöä",
+"Muu rakennus",
+11837
+],
+[
+"3 henkilöä",
+"Erillinen pientalo",
+154755
+],
+[
+"3 henkilöä",
+"Rivi- tai ketjutalo",
+42207
+],
+[
+"3 henkilöä",
+"Asuinkerrostalo",
+83695
+],
+[
+"3 henkilöä",
+"Muu rakennus",
+3451
+],
+[
+"4 henkilöä",
+"Erillinen pientalo",
+154291
+],
+[
+"4 henkilöä",
+"Rivi- tai ketjutalo",
+32253
+],
+[
+"4 henkilöä",
+"Asuinkerrostalo",
+44783
+],
+[
+"4 henkilöä",
+"Muu rakennus",
+2025
+],
+[
+"5 henkilöä",
+"Erillinen pientalo",
+63706
+],
+[
+"5 henkilöä",
+"Rivi- tai ketjutalo",
+8652
+],
+[
+"5 henkilöä",
+"Asuinkerrostalo",
+13281
+],
+[
+"5 henkilöä",
+"Muu rakennus",
+850
+],
+[
+"6 henkilöä",
+"Erillinen pientalo",
+17998
+],
+[
+"6 henkilöä",
+"Rivi- tai ketjutalo",
+1796
+],
+[
+"6 henkilöä",
+"Asuinkerrostalo",
+3777
+],
+[
+"6 henkilöä",
+"Muu rakennus",
+358
+],
+[
+"7+ henkilöä",
+"Erillinen pientalo",
+11860
+],
+[
+"7+ henkilöä",
+"Rivi- tai ketjutalo",
+818
+],
+[
+"7+ henkilöä",
+"Asuinkerrostalo",
+2156
+],
+[
+"7+ henkilöä",
+"Muu rakennus",
+333
+] 
+];
+data.addColumn('string','source');
+data.addColumn('string','target');
+data.addColumn('number','value');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartSankeyID304c16d235cd() {
+var data = gvisDataSankeyID304c16d235cd();
+var options = {};
+options["width"] = "910px";
+options["height"] = "450px";
+options["colors"] = ['#cbb69d', '#603913', '#c69c6e'];
+
+    var chart = new google.visualization.Sankey(
+    document.getElementById('SankeyID304c16d235cd')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "sankey";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartSankeyID304c16d235cd);
+})();
+function displayChartSankeyID304c16d235cd() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+<!-- jsChart -->
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartSankeyID304c16d235cd"></script>
+<!-- divChart -->
+<div id="SankeyID304c16d235cd" style="width: 910px; height: 450px;">
+
+</div>
+<div id="and-thats-about-it" class="section level2">
+<h2>And that’s about it</h2>
+<p>A beautiful, interactive sankey with googleVis from online data with few lines of R-code, beautiful!</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
