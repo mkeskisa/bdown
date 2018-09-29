@@ -15,7 +15,7 @@ pygmentsCodefencesGuessSyntax = true
 
 [Params]
 #  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
-  subtitle = "Markus Keski-Sänttie"
+  subtitle = "Markus Keski-Säntti"
   logo = "img/pusheen2.png"
   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
