@@ -1,11 +1,11 @@
 ---
-title: "Mielenkiintoinen tilanne Liigassa (ex. SM-liiga)"
-author: "Markus Keski-Säntti"
-date: 2018-01-31
-output:
-  prettydoc::html_pretty:
-    theme: cayman
-    highlight: github
+title: sarjatilanne
+author: Markus Keski-Säntti
+date: '2018-09-29'
+slug: sarjatilanne
+categories: []
+tags: []
+subtitle: ''
 ---
 
 ```{r setup, include=FALSE}
