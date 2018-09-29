@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "582B0C99",
-    "lastKnownWriteTime" : 1538229750,
-    "last_content_update" : 1538229750977,
+    "lastKnownWriteTime" : 1538230657,
+    "last_content_update" : 1538230657571,
     "path" : "D:/R/bdown/config.toml",
     "project_path" : "config.toml",
     "properties" : {
-        "cursorPosition" : "48,17",
-        "scrollLine" : "29"
+        "cursorPosition" : "23,17",
+        "scrollLine" : "0"
     },
     "relative_order" : 1,
     "source_on_save" : false,
