@@ -1,4 +1,4 @@
-baseurl = "https://mkeskisa.github.io"
+baseurl = "mkeskisa.netlify.com/"
 DefaultContentLanguage = "en"
 #DefaultContentLanguage = "ja"
 title = "Stuff by me"
