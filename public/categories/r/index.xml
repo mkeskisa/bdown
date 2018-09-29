@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Stuff by me</title>
-    <link>/mkeskisa.netlify.com/categories/r/</link>
+    <link>mkeskisa.netlify.com/categories/r/</link>
     <description>Recent content in R on Stuff by me</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>markuskeskisantti@gmail.com (Markus Keski-Säntti)</managingEditor>
     <webMaster>markuskeskisantti@gmail.com (Markus Keski-Säntti)</webMaster>
     <lastBuildDate>Wed, 31 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/mkeskisa.netlify.com/categories/r/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="mkeskisa.netlify.com/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Mielenkiintoinen tilanne Liigassa (ex. SM-liiga)</title>
-      <link>/mkeskisa.netlify.com/post/sarjataulukko/</link>
+      <link>mkeskisa.netlify.com/post/sarjataulukko/</link>
       <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
       <author>markuskeskisantti@gmail.com (Markus Keski-Säntti)</author>
-      <guid>/mkeskisa.netlify.com/post/sarjataulukko/</guid>
+      <guid>mkeskisa.netlify.com/post/sarjataulukko/</guid>
       <description>Jääkiekossa, kuten useissa muissakin urheilulajeissa, joukkueiden välinen kilpailu on jaksotettu kausittain. Jokaisen joukkueen urheilullinen motivaattori (ainakin toivottavasti) on voittaa kausi. Joskus kuitenkin realiteetit iskevät päin naamaa ja todetaan, ettei menossa olevaa kautta ole mahdollisuutta voittaa, edes teoriassa. Tämä huomataan viimeistään siinä vaiheessa, kun teoreettinen mahdollisuus päästä pudotuspeleihin ja täten finaaliin on menetetty. Herääminen tapahtuu kuitenkin usein huomattavasti aikaisemmin, kun pudotuspeleihin ole enää realistista mahdollisuutta.</description>
     </item>
     
