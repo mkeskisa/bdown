@@ -95,11 +95,11 @@ gg_tyottomyys <- kunnat %>%
 
 gg_tyottomyys
 ```
-![](https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva2.gif)
+![](https://mkeskisa.netlify.com/img/kuva2.gif)
 ```{r echo=TRUE, eval = FALSE}
 gg_tyottomyys + geom_sf(aes(fill = n_tyo)) + labs(title = 'Nuorisotyöttömyys (%) vuonna: {frame_time}', fill = '')
 ```
-![](https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva1.gif)
+![](https://mkeskisa.netlify.com/img/kuva1.gif)
 ```{r echo=TRUE, eval = FALSE}
 kunnat_maakunnat <- 'https://www.stat.fi/meta/luokitukset/kunta/001-2013/luokitusavain_maakunta.html' %>% 
     rvest::html() %>% 
@@ -128,7 +128,7 @@ kunta_limit %>%
     shadow_wake(0.1, alpha = 0.25) +
     transition_time(vuosi)
 ```
-![](https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva3.gif)
+![](https://mkeskisa.netlify.com/img/kuva3.gif)
 ```{r echo=TRUE, eval = FALSE}
 tyottomyys_87 <- get_df %>% 
   filter(Vuosi %in% 1987:2012, str_detect(Alue, 'Koko')) %>% 
@@ -154,4 +154,4 @@ fixed_kunnat %>%
   labs(title = 'Nuorisotyöttömyys ja työttömyys Suomessa vuonna: {frame_time}', y = 'Työttömyysaste (%)', x = 'Nuorisotyöttömyysaste (%)', size = 'Asukasluku')
 
 ```
-![](https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva4.gif)
+![](https://mkeskisa.netlify.com/img/kuva4.gif)

@@ -272,12 +272,12 @@ gg_tyottomyys &lt;- kunnat %&gt;%
 
 gg_tyottomyys</code></pre>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva2.gif" />
+<img src="https://mkeskisa.netlify.com/img/kuva2.gif" />
 
 </div>
 <pre class="r"><code>gg_tyottomyys + geom_sf(aes(fill = n_tyo)) + labs(title = &#39;Nuorisotyöttömyys (%) vuonna: {frame_time}&#39;, fill = &#39;&#39;)</code></pre>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva1.gif" />
+<img src="https://mkeskisa.netlify.com/img/kuva1.gif" />
 
 </div>
 <pre class="r"><code>kunnat_maakunnat &lt;- &#39;https://www.stat.fi/meta/luokitukset/kunta/001-2013/luokitusavain_maakunta.html&#39; %&gt;% 
@@ -307,7 +307,7 @@ kunta_limit %&gt;%
     shadow_wake(0.1, alpha = 0.25) +
     transition_time(vuosi)</code></pre>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva3.gif" />
+<img src="https://mkeskisa.netlify.com/img/kuva3.gif" />
 
 </div>
 <pre class="r"><code>tyottomyys_87 &lt;- get_df %&gt;% 
@@ -333,7 +333,7 @@ fixed_kunnat %&gt;%
   transition_time(vuosi) +
   labs(title = &#39;Nuorisotyöttömyys ja työttömyys Suomessa vuonna: {frame_time}&#39;, y = &#39;Työttömyysaste (%)&#39;, x = &#39;Nuorisotyöttömyysaste (%)&#39;, size = &#39;Asukasluku&#39;)</code></pre>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/mkeskisa/blog/master/themes/beautifulhugo/static/img/kuva4.gif" />
+<img src="https://mkeskisa.netlify.com/img/kuva4.gif" />
 
 </div>
 
