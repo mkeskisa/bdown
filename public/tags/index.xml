@@ -7,28 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>markuskeskisantti@gmail.com (Markus Keski-Säntti)</managingEditor>
     <webMaster>markuskeskisantti@gmail.com (Markus Keski-Säntti)</webMaster>
-    <lastBuildDate>Wed, 31 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>R</title>
-      <link>/tags/r/</link>
-      <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
-      <author>markuskeskisantti@gmail.com (Markus Keski-Säntti)</author>
-      <guid>/tags/r/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Urheilu</title>
-      <link>/tags/urheilu/</link>
-      <pubDate>Wed, 31 Jan 2018 00:00:00 +0000</pubDate>
-      <author>markuskeskisantti@gmail.com (Markus Keski-Säntti)</author>
-      <guid>/tags/urheilu/</guid>
-      <description></description>
-    </item>
     
   </channel>
 </rss>

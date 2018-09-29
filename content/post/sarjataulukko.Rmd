@@ -2,8 +2,6 @@
 title: "Mielenkiintoinen tilanne Liigassa (ex. SM-liiga)"
 author: "Markus Keski-Säntti"
 date: 2018-01-31
-categories: ["R", "Finnish"]
-tags: ["Urheilu", "R"]
 output:
   prettydoc::html_pretty:
     theme: cayman
