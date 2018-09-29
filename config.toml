@@ -51,16 +51,6 @@ pygmentsCodefencesGuessSyntax = true
     weight = 1
 
 [[menu.main]]
-    name = "About"
-    url = "page/about/"
-    weight = 3
-    
-[[menu.main]]
     name = "Archive"
     url = "archive/archive.html"
-    weight = 3
-
-[[menu.main]]
-    name = "Tags"
-    url = "tags"
     weight = 3
